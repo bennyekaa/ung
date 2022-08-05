@@ -99,10 +99,14 @@ class Admin extends CI_Controller {
 		$dariDB = $this->admin_model->cekkode('detail_berkas', 'kode_detail_berkas');
 		$nourut = substr($dariDB, 2, 4); //DT0001
 		$kodeskrg = $nourut + 1;
-		$data = array('kode_detail_berkas' => $kodeskrg);
+		$kodeberkas = $id;
+		$data = array(
+			'kode_detail_berkas' => $kodeskrg,
+			'kode_berkas' =>$kodeberkas,
+			'page' => 'master'
+		);
 		// var_dump($data['kode_berkas']);die();
-		$data['page'] = 'master';
-		$data['kode_berkas'] = $id;
+		// $data['page'] = 'master';
 		// $data['isian'] = $this->Admin_model->check_isi_press_test($id)->result();
 		// var_dump($data['isian']);die();
 		$this->load->view('layout/head');
