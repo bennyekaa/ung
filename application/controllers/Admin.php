@@ -1,7 +1,9 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
-	function __construct() {
+class Admin extends CI_Controller
+{
+	function __construct()
+	{
 		parent::__construct();
 		$this->load->database();
 		$this->load->library('session');
@@ -14,26 +16,29 @@ class Admin extends CI_Controller {
 		// 	redirect('log');
 		// }
 	}
-	public function index(){
+	public function index()
+	{
 		$data['page'] = 'dashboard';
+		$data['berkas'] = $this->admin_model->get_data('berkas')->result();
 		$this->load->view('layout/head');
-		$this->load->view('layout/nav',$data);
+		$this->load->view('layout/nav', $data);
 		$this->load->view('v_admin/beranda');
 		$this->load->view('layout/foot');
 	}
-//gambar
-	public function gambar(){
+	//gambar
+	public function gambar()
+	{
 		$data['page'] = 'master';
 		$data['berkas'] = $this->admin_model->get_data('berkas')->result();
 		$this->load->view('layout/head');
-		$this->load->view('layout/nav',$data);
-		$this->load->view('v_admin/berkas',$data);
+		$this->load->view('layout/nav', $data);
+		$this->load->view('v_admin/berkas', $data);
 		$this->load->view('layout/foot');
 	}
 
 	public function upload_berkas()
 	{
-		$dariDB = $this->admin_model->cekkode('berkas','kode_berkas');
+		$dariDB = $this->admin_model->cekkode('berkas', 'kode_berkas');
 		$nourut = substr($dariDB, 3, 4); //GMB0001
 		$kodeskrg = $nourut + 1;
 		$data = array('kode_berkas' => $kodeskrg);
@@ -56,7 +61,6 @@ class Admin extends CI_Controller {
 		// $config['max_height']           = 768;
 
 		$this->load->library('upload', $config);
-		// var_dump($this->upload);die();
 
 		if (!$this->upload->do_upload('berkas')) {
 			// echo "kosong";die();
@@ -78,16 +82,16 @@ class Admin extends CI_Controller {
 			$berkas = $file_encode;
 			$namaberkas =  $this->upload->data('file_name');
 			$data = array(
-				'kode_berkas' 		=> $kodeberkas,
+				'kode_berkas'	=> $kodeberkas,
 				'nama_berkas' 	=> $namaberkas,
-				'berkas' 	=> $berkas,
+				'berkas' 		=> $berkas,
 				'tipe_berkas' 	=> $tipeberkas,
 				'ukuran_berkas' => $ukuranberkas,
 				'keterangan' 	=> $keterangan
 			);
 			$this->db->insert('berkas', $data);
 			unlink($image_data['full_path']);
-			
+
 			redirect('admin/gambar');
 		}
 		// var_dump($this->input->post());
@@ -102,7 +106,7 @@ class Admin extends CI_Controller {
 		$kodeberkas = $id;
 		$data = array(
 			'kode_detail_berkas' => $kodeskrg,
-			'kode_berkas' =>$kodeberkas,
+			'kode_berkas' => $kodeberkas,
 			'page' => 'master'
 		);
 		// var_dump($data['kode_berkas']);die();
@@ -127,7 +131,6 @@ class Admin extends CI_Controller {
 	// 	$this->load->view('v_admin/foot');
 	// }
 
-// 
+	// 
 
-	}
-?>
+}

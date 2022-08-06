@@ -1,3 +1,17 @@
+<!-- CSS Style -->
+<style type="text/css">
+  /* img {
+    justify-content: space-around;
+  } */
+
+  .content__gambar {
+    width: auto;
+    display: grid;
+    row-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+</style>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -23,39 +37,12 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Data Gambar</h3>
+              <h3 class="card-title">Pilih Gambar</h3>
             </div>
-            <div class="card-body">
-              <?php if ($this->session->flashdata('success')) { ?>
-                <div class="alert alert-success alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h5><i class="icon fas fa-check"></i> Success!</h5>
-                  <?php echo $this->session->flashdata('success'); ?>
-                </div>
+            <div class="card-body content__gambar">
+              <?php foreach ($berkas as $key => $value) { ?>
+                <img src="data:<?= $value->tipe_berkas; ?>;base64,<?= $value->berkas; ?>" width="250" height="300">
               <?php } ?>
-              <br>
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>ID Berkas</th>
-                    <th>Nama Berkas</th>
-                    <th>Keterangan</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($berkas as $key => $value) { ?>
-                    <tr>
-                      <td><?php echo $value->kode_berkas ?></td>
-                      <td><?php echo $value->nama_berkas ?></td>
-                      <td><?php echo $value->keterangan ?></td>
-                      <td>
-                          <a href="#" type="button" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                      </td>
-                    </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
             </div>
             <!-- /.card-body -->
           </div>
