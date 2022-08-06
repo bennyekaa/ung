@@ -27,7 +27,7 @@
                     <div class="card">
                         <form enctype="multipart/form-data" method="POST" action="<?php echo base_url() . 'admin/aksi_upload'; ?>">
                             <div class="form-group">
-                                <input type="text" name="kode_berkas" class="form-control" value="<?php echo $kode_berkas;?>" readonly>
+                                <input type="text" name="kode_berkas" class="form-control" value="GMB<?php echo sprintf("%04s", $kode_berkas) ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Upload Foto</label>

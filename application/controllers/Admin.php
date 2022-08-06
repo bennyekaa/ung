@@ -38,12 +38,15 @@ class Admin extends CI_Controller
 
 	public function upload_berkas()
 	{
-		$dariDB = $this->admin_model->cekkode('berkas', 'kode_berkas');
-		$nourut = substr($dariDB, 3, 4); //GMB0001
+		$dariDB = $this->admin_model->cekkode('berkas', 'kode_berkas', 'id_gambar');
+		$nourut = substr($dariDB->kode_berkas, 3, 4); //GMB0001
 		$kodeskrg = $nourut + 1;
-		$data = array('kode_berkas' => $kodeskrg);
+		$data = array(
+			'kode_berkas' => $kodeskrg,
+			'page' => 'master'
+		);
 		// var_dump($data['kode_berkas']);die();
-		$data['page'] = 'master';
+		// $data['page'] = 'master';
 		// $data['isian'] = $this->Admin_model->check_isi_press_test($id)->result();
 		// var_dump($data['isian']);die();
 		$this->load->view('layout/head');
@@ -98,15 +101,21 @@ class Admin extends CI_Controller
 		// exit;
 	}
 
-	public function next_berkas($id)
+	public function next_berkas()
 	{
-		$dariDB = $this->admin_model->cekkode('detail_berkas', 'kode_detail_berkas');
-		$nourut = substr($dariDB, 2, 4); //DT0001
-		$kodeskrg = $nourut + 1;
-		$kodeberkas = $id;
+		$dariDB = $this->admin_model->cekkode('detail_berkas', 'kode_detail_berkas', 'id_detail_berkas');
+		if ($dariDB == null) {
+			$nourut = 0;
+		} else {
+			$nourut = substr($dariDB->kode_detail_berkas, 2, 4);
+		}
+		var_dump($nourut);
+		die; //DT0001
+		// $kodeskrg = $nourut + 1;
+		// $kodeberkas = $id;
 		$data = array(
-			'kode_detail_berkas' => $kodeskrg,
-			'kode_berkas' => $kodeberkas,
+			// 'kode_detail_berkas' => $kodeskrg,
+			// 'kode_berkas' => $kodeberkas,
 			'page' => 'master'
 		);
 		// var_dump($data['kode_berkas']);die();

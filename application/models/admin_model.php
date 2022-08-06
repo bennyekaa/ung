@@ -8,11 +8,11 @@ class Admin_model extends CI_Model
         return $result;
     }
 
-    function cekkode($table, $field)
+    function cekkode($table, $field, $id)
     {
-        $query = $this->db->query("SELECT $field from $table ORDER BY id_gambar DESC LIMIT 1");
+        $query = $this->db->query("SELECT $field from $table ORDER BY $id DESC LIMIT 1");
         $hasil = $query->row();
-        return $hasil->kode_berkas;
+        return $hasil;
     }
 
     function load_berkas($id)

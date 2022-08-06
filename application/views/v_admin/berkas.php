@@ -56,7 +56,7 @@
                       <td><?php echo $value->keterangan ?></td>
                       <td>
                         <a href="#" type="button" title="Lihat" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                        <a href="<?php echo base_url('admin/next_berkas/' . $value->kode_berkas); ?>" type="button" title="Detail" class="btn btn-warning"><i class="fa fa-arrow-right"></i></a>
+                        <a href="<?php echo base_url('admin/next_berkas'); ?>" type="button" title="Detail" class="btn btn-warning"><i class="fa fa-arrow-right"></i></a>
                       </td>
                     </tr>
                   <?php } ?>
