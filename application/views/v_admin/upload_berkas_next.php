@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Upload Berkas</h1>
+                    <h1>Upload Berkas <?= $kode_berkas; ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,9 +25,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form enctype="multipart/form-data" method="POST" action="<?php echo base_url() . 'admin/aksi_upload'; ?>">
+                        <form enctype="multipart/form-data" method="POST" action="<?php echo base_url() . 'admin/aksi_upload_next'; ?>">
                             <div class="form-group">
-                                <input type="text" name="kode_berkas" class="form-control" value="GMB<?php echo sprintf("%04s", $kode_berkas) ?>" readonly>
+                                <input type="text" name="kode_detail_berkas" class="form-control" value="DT<?php echo sprintf("%04s", $kode_detail_berkas) ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="kode_berkas" class="form-control" value="<?= $kode_berkas; ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Upload Foto</label>

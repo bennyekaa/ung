@@ -101,31 +101,86 @@ class Admin extends CI_Controller
 		// exit;
 	}
 
-	public function next_berkas()
+	public function gambar_next($id)
+	{
+		$data['kodeBerkas'] = $id;
+		$data['detailBerkas'] = $this->admin_model->get_detailData($id);
+		$data['page'] = 'master';
+
+		$this->load->view('layout/head');
+		$this->load->view('layout/nav', $data);
+		$this->load->view('v_admin/berkas_next', $data);
+		$this->load->view('layout/foot');
+	}
+
+	public function upload_berkas_next($id)
 	{
 		$dariDB = $this->admin_model->cekkode('detail_berkas', 'kode_detail_berkas', 'id_detail_berkas');
 		if ($dariDB == null) {
 			$nourut = 0;
 		} else {
-			$nourut = substr($dariDB->kode_detail_berkas, 2, 4);
+			$nourut = substr($dariDB->kode_detail_berkas, 2, 4); //DT0001
 		}
-		var_dump($nourut);
-		die; //DT0001
-		// $kodeskrg = $nourut + 1;
-		// $kodeberkas = $id;
+		$kodeskrg = $nourut + 1;
+		$kodeberkas = $id;
 		$data = array(
-			// 'kode_detail_berkas' => $kodeskrg,
-			// 'kode_berkas' => $kodeberkas,
+			'kode_detail_berkas' => $kodeskrg,
+			'kode_berkas' => $kodeberkas,
 			'page' => 'master'
 		);
-		// var_dump($data['kode_berkas']);die();
-		// $data['page'] = 'master';
-		// $data['isian'] = $this->Admin_model->check_isi_press_test($id)->result();
-		// var_dump($data['isian']);die();
 		$this->load->view('layout/head');
 		$this->load->view('layout/nav', $data);
 		$this->load->view('v_admin/upload_berkas_next', $data);
 		$this->load->view('layout/foot');
+	}
+
+	public function aksi_upload_next()
+	{
+		$config['upload_path']          = FCPATH . 'dist/detail_upload/';
+		$config['allowed_types']        = 'jpeg|jpg|png';
+		// $config['max_size']             = 10000;
+		// $config['max_width']            = 1024;
+		// $config['max_height']           = 768;
+
+		$this->load->library('upload', $config);
+		// var_dump($this->upload->do_upload('berkas'));
+		// die;
+
+		if (!$this->upload->do_upload('berkas')) {
+			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata('GAGAL', $error);
+			redirect('admin/gambar');
+		} else {
+			$kodeDetailberkas = $this->input->post('kode_detail_berkas');
+			$kodeBerkas = $this->input->post('kode_berkas');
+			$namaberkas =  $this->upload->data('file_name');
+			$ukuranberkas = $this->upload->data('file_size');
+
+			$image_data = $this->upload->data();
+			$imgdata = file_get_contents($image_data['full_path']);
+			$file_encode = base64_encode($imgdata);
+			$berkas = $file_encode;
+
+			$tipeberkas = $this->upload->data('file_type');
+			$keterangan = $this->input->post('keterangan');
+
+			$data = array(
+				'kode_detail_berkas'		=> $kodeDetailberkas,
+				'kode_berkas'				=> $kodeBerkas,
+				'nama_detail_berkas' 		=> $namaberkas,
+				'ukuran_detail_berkas' 		=> $ukuranberkas,
+				'file_upload' 				=> $berkas,
+				'tipe_detail_berkas' 		=> $tipeberkas,
+				'keterangan_detail_berkas' 	=> $keterangan
+			);
+
+			$this->db->insert('detail_berkas', $data);
+			unlink($image_data['full_path']);
+
+			redirect('admin/gambar');
+		}
+		// var_dump($this->input->post());
+		// exit;
 	}
 
 	// public function tampil_berkas($id)
