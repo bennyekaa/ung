@@ -183,6 +183,20 @@ class Admin extends CI_Controller
 		// exit;
 	}
 
+	public function beranda_next($kode)
+	{
+		$where = array('kode_berkas' => $kode);
+		$data['berkas'] = $this->admin_model->getGambar($where);
+		$data['detailBerkas'] = $this->admin_model->get_detailData($kode);
+
+		$data['kode_berkas'] = $kode;
+
+		$this->load->view('layout/head');
+		$this->load->view('layout/nav', $data);
+		$this->load->view('v_admin/beranda_next', $data);
+		$this->load->view('layout/foot');
+	}
+
 	// public function tampil_berkas($id)
 	// {
 

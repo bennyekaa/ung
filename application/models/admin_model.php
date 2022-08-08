@@ -14,6 +14,12 @@ class Admin_model extends CI_Model
         return $query->result();
     }
 
+    public function getGambar($where)
+    {
+        $query = $this->db->get_where('berkas', $where);
+        return $query->row();
+    }
+
     function cekkode($table, $field, $id)
     {
         $query = $this->db->query("SELECT $field from $table ORDER BY $id DESC LIMIT 1");
