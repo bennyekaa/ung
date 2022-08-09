@@ -8,11 +8,23 @@ class Admin_model extends CI_Model
         return $result;
     }
 
-    function cekkode($table, $field)
+    function get_detailData($kode)
     {
-        $query = $this->db->query("SELECT $field from $table ORDER BY id_gambar DESC LIMIT 1");
+        $query = $this->db->query("SELECT * from detail_berkas WHERE kode_berkas = '$kode'");
+        return $query->result();
+    }
+
+    public function getGambar($where)
+    {
+        $query = $this->db->get_where('berkas', $where);
+        return $query->row();
+    }
+
+    function cekkode($table, $field, $id)
+    {
+        $query = $this->db->query("SELECT $field from $table ORDER BY $id DESC LIMIT 1");
         $hasil = $query->row();
-        return $hasil->kode_berkas;
+        return $hasil;
     }
 
     function load_berkas($id)

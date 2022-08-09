@@ -41,7 +41,9 @@
             </div>
             <div class="card-body content__gambar">
               <?php foreach ($berkas as $key => $value) { ?>
-                <img src="data:<?= $value->tipe_berkas; ?>;base64,<?= $value->berkas; ?>" width="250" height="300">
+                <a href="<?= base_url('admin/beranda_next/' . $value->kode_berkas); ?>">
+                  <img src="data:<?= $value->tipe_berkas; ?>;base64,<?= $value->berkas; ?>" width="250" height="300">
+                </a>
               <?php } ?>
             </div>
             <!-- /.card-body -->
