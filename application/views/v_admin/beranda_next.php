@@ -16,10 +16,6 @@
     }
 
     .btn {
-        background-color: transparent;
-        background-image: url('../../../dist/img/check.png');
-        background-repeat: no-repeat;
-        background-position: center;
         height: 25px;
         border: 2px solid black;
     }
@@ -28,11 +24,16 @@
         background-color: green;
     }
 
-    .shape {
+    .shape__pict {
         z-index: 100;
         position: absolute;
         top: 10;
         left: 20px;
+        display: none;
+    }
+
+    .active-pict {
+        display: inline;
     }
 
     /* .shape button[aria-pressed="true"] {
@@ -71,14 +72,16 @@
                             <div>
                                 <img src="data:<?= $berkas->tipe_berkas; ?>;base64,<?= $berkas->berkas; ?>" width="450" height="500">
                                 <?php foreach ($detailBerkas as $key => $value) { ?>
-                                    <img class="shape" style="display: none;" id="<?= substr($value->keterangan_detail_berkas, 0, 3) ?>" src="data:<?= $value->tipe_detail_berkas; ?>;base64,<?= $value->file_upload; ?>" width="450" height="500">
+                                    <div class="shape__pict">
+                                        <img src="data:<?= $value->tipe_detail_berkas; ?>;base64,<?= $value->file_upload; ?>" width="450" height="500">
+                                    </div>
                                 <?php } ?>
                             </div>
 
                             <ul class="list-name">
                                 <?php foreach ($detailBerkas as $key => $value) { ?>
                                     <li>
-                                        <button type="button" onclick="myFunction()" id="btn-pict" class="btn" data-toggle="button" target="#<?= substr($value->keterangan_detail_berkas, 0, 3) ?>" aria-pressed="false"></button> <?= $value->keterangan_detail_berkas ?>
+                                        <button type="button" id="btn-pict" class="btn pict__button" data-toggle="button" aria-pressed="false"></button> <?= $value->keterangan_detail_berkas ?>
                                     </li>
                                 <?php } ?>
                             </ul>
@@ -98,18 +101,26 @@
 <!-- /.content-wrapper -->
 
 <script>
-    btnToogle = document.getElementById('btn-pict');
-    <?php foreach ($detailBerkas as $key => $value) { ?>
-        viewPict = document.getElementById("<?= substr($value->keterangan_detail_berkas, 0, 3) ?>");
-    <?php } ?>
+    const pictBtn = document.querySelectorAll('.pict__button'),
+        pictViews = document.querySelectorAll('.shape__pict'),
+        pictBtnId = document.getElementById('btn-pict');
 
-    function myFunction() {
-        if (btnToogle.getAttribute('aria-pressed') === "false") {
-            viewPict.style.display = "inline";
-            console.log(btnToogle.getAttribute('target'));
-        } else {
-            viewPict.style.display = "none";
-            console.log('benar');
-        }
-    }
+    let modalAdd = function(modalClick) {
+        pictViews[modalClick].classList.add('active-pict');
+    };
+    let modalRemove = function(modalClick) {
+        pictViews[modalClick].classList.remove('active-pict');
+    };
+
+    pictBtn.forEach((modalBtn, i) => {
+        modalBtn.addEventListener('click', () => {
+            if (modalBtn.getAttribute('aria-pressed') === "false") {
+                modalAdd(i);
+                console.log('jika attr salah ' + modalBtn.getAttribute('aria-pressed'));
+            } else {
+                modalRemove(i);
+                console.log('jika attr benar ' + modalBtn.getAttribute('aria-pressed'));
+            }
+        });
+    })
 </script>
