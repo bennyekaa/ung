@@ -1,9 +1,5 @@
 <!-- CSS Style -->
 <style type="text/css">
-  /* img {
-    justify-content: space-around;
-  } */
-
   .content__gambar {
     width: auto;
     display: grid;

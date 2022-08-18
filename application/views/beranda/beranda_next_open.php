@@ -20,10 +20,6 @@
         border: 2px solid black;
     }
 
-    .active {
-        background-color: green;
-    }
-
     .shape__pict {
         z-index: 100;
         position: absolute;
@@ -35,65 +31,84 @@
     .active-pict {
         display: inline;
     }
-
-    /* .shape button[aria-pressed="true"] {
-        display: inline;
-    } */
 </style>
 
-<section id="services" class="services">
-    <div class="container">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style="margin-top: 5rem;">
 
-        <div class="row">
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <div class="icon-box">
-                    <div class="icon"><i class="fas fa-heartbeat"></i></div>
-                    <h4><a href="">Lorem Ipsum</a></h4>
-                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Gambar <?= $kode_berkas; ?></h3>
+                        </div>
+                        <div class="card-body content__gambar">
+                            <div>
+                                <img src="data:<?= $berkas->tipe_berkas; ?>;base64,<?= $berkas->berkas; ?>" width="700" height="500">
+                                <?php foreach ($detailBerkas as $key => $value) { ?>
+                                    <div class="shape__pict">
+                                        <img src="data:<?= $value->tipe_detail_berkas; ?>;base64,<?= $value->file_upload; ?>" width="700" height="500">
+                                    </div>
+                                <?php } ?>
+                            </div>
+
+                            <ul class="list-name">
+                                <?php foreach ($detailBerkas as $key => $value) { ?>
+                                    <li>
+                                        <button type="button" id="btn-pict" class="btn pict__button" data-toggle="button" aria-pressed="false"></button> <?= $value->keterangan_detail_berkas ?>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
                 </div>
+                <!-- /.col -->
             </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                <div class="icon-box">
-                    <div class="icon"><i class="fas fa-pills"></i></div>
-                    <h4><a href="">Sed ut perspiciatis</a></h4>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                <div class="icon-box">
-                    <div class="icon"><i class="fas fa-hospital-user"></i></div>
-                    <h4><a href="">Magni Dolores</a></h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                <div class="icon-box">
-                    <div class="icon"><i class="fas fa-dna"></i></div>
-                    <h4><a href="">Nemo Enim</a></h4>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                <div class="icon-box">
-                    <div class="icon"><i class="fas fa-wheelchair"></i></div>
-                    <h4><a href="">Dele cardo</a></h4>
-                    <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-                <div class="icon-box">
-                    <div class="icon"><i class="fas fa-notes-medical"></i></div>
-                    <h4><a href="">Divera don</a></h4>
-                    <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-                </div>
-            </div>
-
+            <!-- /.row -->
         </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
-    </div>
-</section><!-- End Services Section -->
+<script>
+    const pictBtn = document.querySelectorAll('.pict__button'),
+        pictViews = document.querySelectorAll('.shape__pict');
+
+    let modalAdd = function(modalClick) {
+        pictViews[modalClick].classList.add('active-pict');
+        pictBtn[modalClick].classList.add('btn-success');
+    };
+    let modalRemove = function(modalClick) {
+        pictViews[modalClick].classList.remove('active-pict');
+        pictBtn[modalClick].classList.remove('btn-success');
+    };
+
+    // function linkAction() {
+    //     const pictBtnId = document.getElementById('btn-pict');
+    //     pictBtnId.classList.toggle('btn-success');
+    // }
+
+    pictBtn.forEach((modalBtn, i) => {
+        modalBtn.addEventListener('click', () => {
+            if (modalBtn.getAttribute('aria-pressed') === "false") {
+                modalAdd(i);
+            } else {
+                modalRemove(i);
+            }
+        });
+    })
+
+
+    // pictBtnId.forEach((pressBtn, i) => {
+    //     pressBtn.addEventListener('click', () => {
+    //         pressBtn.classList.toggle('btn-success')
+    //     })
+    // });
+</script>
