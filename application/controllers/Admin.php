@@ -11,7 +11,7 @@ class Admin extends CI_Controller
 		$this->load->helper('download');
 		$this->load->model('admin_model');
 		date_default_timezone_set("Asia/Jakarta");
-		error_reporting(0);
+		error_reporting(E_ALL);
 		// if ($this->session->userdata('level') != 'admin' ){
 		// 	redirect('log');
 		// }
@@ -39,8 +39,8 @@ class Admin extends CI_Controller
 	public function upload_berkas()
 	{
 		$dariDB = $this->admin_model->cekkode('berkas', 'kode_berkas', 'id_gambar');
-		$nourut = substr($dariDB->kode_berkas, 3, 4); //GMB0001
-		$kodeskrg = $nourut + 1;
+			$nourut = (int)substr($dariDB->kode_berkas, 3, 4); //GMB0001
+			$kodeskrg = $nourut + 1;
 		$data = array(
 			'kode_berkas' => $kodeskrg,
 			'page' => 'master'
@@ -57,6 +57,7 @@ class Admin extends CI_Controller
 
 	public function aksi_upload()
 	{
+		// var_dump(FCPATH);
 		$config['upload_path']          = FCPATH . 'dist/upload/';
 		$config['allowed_types']        = 'jpeg|jpg|png';
 		// $config['max_size']             = 10000;

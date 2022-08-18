@@ -22,7 +22,7 @@ class Admin_model extends CI_Model
 
     function cekkode($table, $field, $id)
     {
-        $query = $this->db->query("SELECT $field from $table ORDER BY $id DESC LIMIT 1");
+        $query = $this->db->query("SELECT MAX($field) as $field from $table ORDER BY $id DESC LIMIT 1");
         $hasil = $query->row();
         return $hasil;
     }
