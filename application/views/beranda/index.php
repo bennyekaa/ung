@@ -135,39 +135,18 @@
             <h2>Atlas</h2>
         </div>
 
+
         <div class="row">
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                <a href="<?php echo base_url('front/atlas/SITOLOGI/sitologi') ?>" class="icon-box" style="background: url(<?php echo base_url('front/img/Jaringan-Epitel.jpg') ?>); background-repeat: no-repeat;">
-                    <!-- <div class="icon"><i class="fas fa-heartbeat"></i></div> -->
-                    <!-- <a href=""><img src="front/img/Sitologi-370x250.jpg" width="100%" height="100%"></a> -->
-                    <div style="padding-top: 50%; color: black;">
-                        <h4>SITOLOGI</h4>
-                        <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                <a href="<?php echo base_url('front/atlas/EPITEL/jaringan_epitel') ?>" class="icon-box" style="background: url(<?php echo base_url('front/img/Jaringan-Epitel.jpg') ?>); background-repeat: no-repeat;">
-                    <!-- <div class="icon"><i class="fas fa-pills"></i></div> -->
-                    <!-- <a href=""><img src="front/img/Jaringan-Epitel.jpg" width="100%" height="100%"></a> -->
-                    <div style="padding-top: 50%; color: black;">
-                        <h4>JARINGAN EPITEL & KELENJAR</h4>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                <a href="<?php echo base_url('front/atlas/IKAT/jaringan_ikat') ?>" class="icon-box" style="background: url(<?php echo base_url('front/img/Jaringan-Epitel.jpg') ?>); background-repeat: no-repeat;">
-                    <!--<div class="icon"><i class="fas fa-hospital-user"></i></div> -->
-                    <!-- <a href=""><img src="front/img/Jaringan-Ikat-370x250.jpg" width="100%" height="100%"></a> -->
-                    <div style="padding-top: 50%; color:black;">
-                        <h4>JARINGAN IKAT</h4>
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-                    </div>
-                </a>
-            </div>
+            <?php foreach ($kategori as $key => $value) { ?>
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+                    <a href="<?= base_url('front/atlas/' . $value->kode_kategori); ?>" class="icon-box" style="background: url(<?php echo base_url('front/img/Jaringan-Epitel.jpg') ?>); background-repeat: no-repeat;">
+                        <div style="padding-top: 40%; color: black;">
+                            <h4><?= $value->nama_kategori; ?></h4>
+                            <p><?= $value->keterangan_kategori; ?></p>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
 
         </div>
 

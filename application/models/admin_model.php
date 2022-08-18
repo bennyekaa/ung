@@ -14,6 +14,12 @@ class Admin_model extends CI_Model
         return $query->result();
     }
 
+    function getGambarKategori($kode)
+    {
+        $query = $this->db->query("SELECT * from berkas WHERE kode_kategori = '$kode'");
+        return $query->result();
+    }
+
     public function getGambar($where)
     {
         $query = $this->db->get_where('berkas', $where);
