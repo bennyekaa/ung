@@ -155,6 +155,13 @@ class Admin_model extends CI_Model
         return $data;
     }
 
+    function getselect()
+    {
+        $query = $this->db->query("SELECT * FROM kategori");
+        $hasil = $query->row();
+        return $hasil;
+    }
+
     function cekkodepresstest()
     {
         $query = $this->db->query("SELECT MAX(id_press_test) as kodepresstest from data_press_test");

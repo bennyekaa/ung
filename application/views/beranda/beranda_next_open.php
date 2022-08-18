@@ -1,3 +1,46 @@
+<!-- CSS Style -->
+<style type="text/css">
+    .content__gambar {
+        width: auto;
+        display: grid;
+        row-gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .list-name {
+        list-style: none;
+    }
+
+    .list-name li {
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        height: 25px;
+        border: 2px solid black;
+    }
+
+    .active {
+        background-color: green;
+    }
+
+    .shape__pict {
+        z-index: 100;
+        position: absolute;
+        top: 10;
+        left: 20px;
+        display: none;
+    }
+
+    .active-pict {
+        display: inline;
+    }
+
+    /* .shape button[aria-pressed="true"] {
+        display: inline;
+    } */
+</style>
+
 <section id="services" class="services">
     <div class="container">
 

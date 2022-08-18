@@ -17,18 +17,37 @@ class Front extends CI_Controller {
 		$data['panel_atas'] = true;
 		$data['breadcrums'] = false;
 		$data['var'] = false;
+		$data['kategori'] = $this->admin_model->get_data('kategori')->result();
 		$this->load->view('layout/front/app',$data);
 	}
 
-	public function atlas($judul,$hal){
+	public function atlas($kode){
 		$data['panel_atas'] = false;
 		$data['next'] = false;
 		$data['breadcrums'] = true;
 		$data['var'] = true;
 		$data['nama_view'] = 'beranda/beranda_next';
+		// $data['content']['judulhalaman'] = $judul;
+		// $data['content']['halaman'] = $hal;
+		$data['berkas'] = $this->admin_model->get_data('berkas')->result();
+		$this->load->view('layout/front/app', $data);
+	}
+
+	public function atlas_next($judul,$hal,$kode){
+		$data['panel_atas'] = false;
+		$data['next'] = true;
+		$data['breadcrums'] = true;
+		$data['var'] = true;
+		$data['nama_view'] = 'beranda/beranda_next_open';
 		$data['content']['judulhalaman'] = $judul;
 		$data['content']['halaman'] = $hal;
-		$this->load->view('layout/front/app', $data);
+
+		$where = array('kode_berkas' => $kode);
+		$data['berkas'] = $this->admin_model->getGambar($where);
+		$data['detailBerkas'] = $this->admin_model->get_detailData($kode);
+
+		$data['kode_berkas'] = $kode;
+
 	}
 
 }

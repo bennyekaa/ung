@@ -30,6 +30,7 @@ class Admin extends CI_Controller
 	{
 		$data['page'] = 'master';
 		$data['berkas'] = $this->admin_model->get_data('berkas')->result();
+		// $data['kategori'] = $this->admin_model->getselect();
 		$this->load->view('layout/head');
 		$this->load->view('layout/nav', $data);
 		$this->load->view('v_admin/berkas', $data);
@@ -39,11 +40,14 @@ class Admin extends CI_Controller
 	public function upload_berkas()
 	{
 		$dariDB = $this->admin_model->cekkode('berkas', 'kode_berkas', 'id_gambar');
-			$nourut = (int)substr($dariDB->kode_berkas, 3, 4); //GMB0001
-			$kodeskrg = $nourut + 1;
+		$nourut = (int)substr($dariDB->kode_berkas, 3, 4); //GMB0001
+		$kodeskrg = $nourut + 1;
+		// print_r($data['kategori']);
+		// die();
 		$data = array(
 			'kode_berkas' => $kodeskrg,
-			'page' => 'master'
+			'page' => 'master',
+			'kategori' => $this->admin_model->get_data('kategori')->result()
 		);
 		// var_dump($data['kode_berkas']);die();
 		// $data['page'] = 'master';
@@ -79,6 +83,7 @@ class Admin extends CI_Controller
 			// die();
 			// $imgdata = file_get_contents($_FILES['berkas']['tmp_name']);
 			$file_encode = base64_encode($imgdata);
+			$kodekategori = $this->input->post('kode_kategori');
 			$keterangan = $this->input->post('keterangan');
 			$kodeberkas = $this->input->post('kode_berkas');
 			$tipeberkas = $this->upload->data('file_type');
@@ -91,7 +96,8 @@ class Admin extends CI_Controller
 				'berkas' 		=> $berkas,
 				'tipe_berkas' 	=> $tipeberkas,
 				'ukuran_berkas' => $ukuranberkas,
-				'keterangan' 	=> $keterangan
+				'keterangan' 	=> $keterangan,
+				'kode_kategori' => $kodekategori
 			);
 			$this->db->insert('berkas', $data);
 			unlink($image_data['full_path']);
@@ -120,7 +126,7 @@ class Admin extends CI_Controller
 		if ($dariDB == null) {
 			$nourut = 0;
 		} else {
-			$nourut = substr($dariDB->kode_detail_berkas, 2, 4); //DT0001
+			$nourut = (int)substr($dariDB->kode_detail_berkas, 2, 4); //DT0001
 		}
 		$kodeskrg = $nourut + 1;
 		$kodeberkas = $id;

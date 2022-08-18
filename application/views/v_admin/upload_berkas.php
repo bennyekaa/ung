@@ -19,9 +19,6 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <? if ($this->session->flashdata('error')) : ?>
-                <p class='flashMsg flashSuccess'> <?= $this->session->flashdata('error') ?> </p>
-            <? endif ?>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -29,6 +26,20 @@
                             <div class="form-group">
                                 <input type="text" name="kode_berkas" class="form-control" value="GMB<?php echo sprintf("%04s", $kode_berkas) ?>" readonly>
                             </div>
+                            <div class="form-group">
+                                <label>Kategori</label>
+                                <select name="kode_kategori" id="kategori">
+                                    <option disabled selected> Pilih </option>
+                                    <?php
+                                    foreach ($kategori ?? [] as $key => $value) {
+                                    ?>
+                                        <option value="<?= $value->kode_kategori ?>"><?= $value->nama_kategori ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
                             <div class="form-group">
                                 <label>Upload Foto</label>
                                 <input type="file" id="berkas" name="berkas" accept="image/*">

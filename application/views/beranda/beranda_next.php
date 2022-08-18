@@ -19,14 +19,14 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                 <div class="card-body content__gambar">
                     <?php foreach ($berkas as $key => $value) { ?>
-                        <a href="<?= base_url('admin/beranda_next/' . $value->kode_berkas); ?>">
+                        <a href="<?= base_url('front/atlas_next/' . $value->kode_berkas); ?>">
                             <img src="data:<?= $value->tipe_berkas; ?>;base64,<?= $value->berkas; ?>" width="250" height="300">
                         </a>
                     <?php } ?>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+            <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
                 <div class="icon-box">
                     <div class="icon"><i class="fas fa-pills"></i></div>
                     <h4><a href="">Sed ut perspiciatis</a></h4>
@@ -64,7 +64,7 @@
                     <h4><a href="">Divera don</a></h4>
                     <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
