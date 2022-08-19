@@ -56,6 +56,7 @@
                                             <td><?php echo $value->keterangan_detail_berkas ?></td>
                                             <td>
                                                 <a href="#" type="button" title="Lihat" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                                <a href="<?php echo base_url('admin/hapus_next/' . $value->kode_detail_berkas); ?>" type="button" title="Hapus" class="btn btn-danger"><i class="fa fa-crosshairs"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

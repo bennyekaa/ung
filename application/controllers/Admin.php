@@ -204,6 +204,22 @@ class Admin extends CI_Controller
 		$this->load->view('layout/foot');
 	}
 
+	public function hapus($id)
+	{
+		$where = array('kode_berkas' => $id);
+		$this->admin_model->hapus_data($where, 'berkas');
+		// $this->session->set_flashdata('success', 'Berhasil dihapus');
+		redirect('admin/gambar');
+	}
+
+	public function hapus_next($id)
+	{
+		$where = array('kode_detail_berkas' => $id);
+		$this->admin_model->hapus_data($where, 'detail_berkas');
+		// $this->session->set_flashdata('success', 'Berhasil dihapus');
+		redirect('admin/gambar');
+	}
+
 	// public function tampil_berkas($id)
 	// {
 
