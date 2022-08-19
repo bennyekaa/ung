@@ -43,7 +43,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Gambar <?= $kode_berkas; ?></h3>
+                            <h3 class="card-title">Gambar <?= $berkas->keterangan; ?></h3>
                         </div>
                         <div class="card-body content__gambar">
                             <div>

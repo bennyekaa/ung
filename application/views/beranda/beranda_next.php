@@ -8,7 +8,7 @@
     }
 </style>
 
-<section id="services" class="services">
+<div id="services" class="services">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -32,4 +32,4 @@
         <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
-</section><!-- End Services Section -->
+</div><!-- End Services Section -->

@@ -136,14 +136,33 @@
         </div>
 
 
+        <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+                <a href="" class="icon-box" style="background: background-repeat: no-repeat;">
+                    <div class="icon"><i class="fas fa-pills"></i></div>
+        <a href=""><img src="front/img/Jaringan-Epitel.jpg" width="100%" height="100%"></a>
+        <div style="padding-top: 50%; color: black;">
+            <h4>JARINGAN EPITEL & KELENJAR</h4>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+        </div>
+        </a>
+    </div> -->
         <div class="row">
             <?php foreach ($kategori as $key => $value) { ?>
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                    <a href="<?= base_url('front/atlas/' . $value->kode_kategori); ?>" class="icon-box" style="background: url(<?php echo base_url('front/img/Jaringan-Epitel.jpg') ?>); background-repeat: no-repeat;">
-                        <div style="padding-top: 40%; color: black;">
-                            <h4><?= $value->nama_kategori; ?></h4>
+                <div class="col-lg-4">
+                    <a href="<?= base_url('front/atlas/' . $value->kode_kategori); ?>"><img src="front/img/Jaringan-Epitel.jpg" width="100%" height="100%"></a>
+                    <!-- <div style="padding-top: 40%; color: black;"> -->
+                        <div style="position: absolute;
+                                    bottom: 5px;
+                                    right: 20px;
+                                    left: 20px;
+                                    background-color: grey;
+                                    color: white;
+                                    padding-left: 5px;
+                                    padding-right: 5px;">
+                            <h5><?= $value->nama_kategori; ?></h5>
                             <p><?= $value->keterangan_kategori; ?></p>
                         </div>
+                    <!-- </div> -->
                     </a>
                 </div>
             <?php } ?>

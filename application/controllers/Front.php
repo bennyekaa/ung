@@ -11,7 +11,7 @@ class Front extends CI_Controller
 		$this->load->helper('download');
 		$this->load->model('admin_model');
 		// date_default_timezone_set("Asia/Jakarta");
-		error_reporting(E_ALL);
+		error_reporting(0);
 	}
 
 	public function index()
@@ -28,8 +28,10 @@ class Front extends CI_Controller
 	{
 		$data['panel_atas'] = false;
 		$data['next'] = false;
-		$data['breadcrums'] = false;
+		$data['breadcrums'] = true;
 		$data['var'] = true;
+		$where = array('kode_kategori' => $kode);
+		$data['content']['kategori'] = $this->admin_model->get_where('kategori', $where);
 		$data['nama_view'] = 'beranda/beranda_next';
 		// $data['content']['judulhalaman'] = $judul;
 		// $data['content']['halaman'] = $hal;
@@ -39,18 +41,19 @@ class Front extends CI_Controller
 
 	public function atlas_next($kode)
 	{
+		$data['breadcrums'] = false;
+		$data['panel_atas'] = false;
+		$data['next'] = false;
+		$data['var'] = true;
+		$data['kode_berkas'] = $kode;
 		$where = array('kode_berkas' => $kode);
 		$data['berkas'] = $this->admin_model->getGambar($where);
 		$data['detailBerkas'] = $this->admin_model->get_detailData($kode);
-		$data['kode_berkas'] = $kode;
-
-		$data['panel_atas'] = false;
-		$data['next'] = false;
-		$data['breadcrums'] = false;
-		$data['var'] = true;
+		// $data['content']['kategori'] = $this->admin_model->get_detailData($kode);
 		$data['nama_view'] = 'beranda/beranda_next_open';
 		$this->load->view('layout/front/app', $data);
+		// var_dump($data);
+		// die();
 		// $data['content']['judulhalaman'] = $judul;
-		// $data['content']['halaman'] = $hal;
 	}
 }
