@@ -1,12 +1,5 @@
 <!-- CSS Style -->
 <style type="text/css">
-    .content__gambar {
-        width: auto;
-        display: grid;
-        row-gap: 2rem;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .list-name {
         list-style: none;
     }
@@ -36,9 +29,63 @@
         display: inline;
     }
 
-    /* .shape button[aria-pressed="true"] {
-        display: inline;
-    } */
+    /* For small devices */
+    @media screen and (max-width: 450px) {
+        .content__gambar {
+            width: auto;
+            display: grid;
+            row-gap: 2rem;
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .content__gambar img {
+            width: 200px;
+            height: 150px;
+        }
+    }
+
+    /* For medium devices */
+    @media screen and (min-width: 586px) {
+        .content__gambar {
+            width: auto;
+            display: grid;
+            row-gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .content__gambar img {
+            width: 300px;
+            height: 250px;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .content__gambar {
+            width: auto;
+            display: grid;
+            row-gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .content__gambar img {
+            width: 400px;
+            height: 350px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .content__gambar {
+            width: auto;
+            display: grid;
+            row-gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .content__gambar img {
+            width: 600px;
+            height: 400px;
+        }
+    }
 </style>
 
 <!-- Content Wrapper. Contains page content -->
@@ -70,10 +117,10 @@
                         </div>
                         <div class="card-body content__gambar">
                             <div>
-                                <img src="data:<?= $berkas->tipe_berkas; ?>;base64,<?= $berkas->berkas; ?>" width="450" height="500">
+                                <img class="shape__primary" src="data:<?= $berkas->tipe_berkas; ?>;base64,<?= $berkas->berkas; ?>">
                                 <?php foreach ($detailBerkas as $key => $value) { ?>
                                     <div class="shape__pict">
-                                        <img src="data:<?= $value->tipe_detail_berkas; ?>;base64,<?= $value->file_upload; ?>" width="450" height="500">
+                                        <img src="data:<?= $value->tipe_detail_berkas; ?>;base64,<?= $value->file_upload; ?>">
                                     </div>
                                 <?php } ?>
                             </div>
