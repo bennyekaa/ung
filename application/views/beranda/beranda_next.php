@@ -1,10 +1,61 @@
 <!-- CSS Style -->
 <style type="text/css">
-    .content__gambar {
-        width: auto;
-        display: grid;
-        row-gap: 2rem;
-        grid-template-columns: repeat(3, 1fr);
+    /* For small devices */
+    @media screen and (max-width: 450px) {
+        .content__gambar {
+            width: auto;
+            display: grid;
+            row-gap: 2rem;
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .content__gambar img {
+            width: 200px;
+            height: 150px;
+        }
+    }
+
+    /* For medium devices */
+    @media screen and (min-width: 586px) {
+        .content__gambar {
+            width: auto;
+            display: grid;
+            row-gap: 2rem;
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .content__gambar img {
+            width: 300px;
+            height: 250px;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .content__gambar {
+            width: auto;
+            display: grid;
+            row-gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .content__gambar img {
+            width: 300px;
+            height: 250px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .content__gambar {
+            width: auto;
+            display: grid;
+            row-gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .content__gambar img {
+            width: 400px;
+            height: 300px;
+        }
     }
 </style>
 
@@ -19,7 +70,7 @@
                     <div class="card-body content__gambar">
                         <?php foreach ($berkas as $key => $value) { ?>
                             <a href="<?= base_url('front/atlas_next/' . $value->kode_berkas); ?>">
-                                <img src="data:<?= $value->tipe_berkas; ?>;base64,<?= $value->berkas; ?>" width="400" height="300">
+                                <img src="data:<?= $value->tipe_berkas; ?>;base64,<?= $value->berkas; ?>">
                             </a>
                         <?php } ?>
                     </div>
