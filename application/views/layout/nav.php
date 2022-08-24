@@ -42,14 +42,8 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info">
-            <?php
-            if ($this->session->userdata('user') !== FALSE) {
-            ?>
-              <a class="d-block">Hi,</a>
+            <a href="<?php echo base_url('admin'); ?>" class="d-block">Hi, <?php echo $this->session->userdata('user'); ?></a>
           </div>
-        <?php } else { ?>
-          <a href="<?php echo base_url('admin'); ?>" class="d-block">Hi, <?php echo $this->session->userdata('user'); ?></a>
-        <?php } ?>
         </div>
 
         <!-- Sidebar Menu -->
@@ -93,7 +87,45 @@
                     </p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/kategori" class="nav-link <?php if ($this->uri->segment(2) == 'kategori') {
+                                                                                    echo "active";
+                                                                                  } ?>">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                      Kategori
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/masukkan" class="nav-link <?php if ($this->uri->segment(2) == 'masukkan') {
+                                                                                    echo "active";
+                                                                                  } ?>">
+                    <i class="nav-icon fas fa-door-open"></i>
+                    <p>
+                      Kritik & Saran
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>admin/user" class="nav-link <?php if ($this->uri->segment(2) == 'user') {
+                                                                                    echo "active";
+                                                                                  } ?>">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                      User
+                    </p>
+                  </a>
+                </li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>log/logout" class="nav-link">
+                <i class="nav-icon fas fa fa-power-off"></i>
+                <p>
+                  Log Out
+                </p>
+              </a>
             </li>
           </ul>
         </nav>

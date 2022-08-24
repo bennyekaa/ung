@@ -26,11 +26,11 @@
               <h3 class="card-title">Data Berkas</h3>
             </div>
             <div class="card-body">
-              <?php if ($this->session->flashdata('success')) { ?>
-                <div class="alert alert-success alert-dismissible">
+              <?php if (isset($_SESSION['message'])) { ?>
+                <div class="alert alert-info alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h5><i class="icon fas fa-check"></i> Success!</h5>
-                  <?php echo $this->session->flashdata('success'); ?>
+                  <h5><?= $_SESSION['message'];?></h5>
+                  <?php unset($_SESSION['message']); ?>
                 </div>
               <?php } ?>
               <div class="row">
@@ -44,8 +44,9 @@
                   <tr>
                     <th>ID Berkas</th>
                     <th>Nama Berkas</th>
+                    <th>Gambar</th>
                     <th>Keterangan</th>
-                    <th>Aksi</th>
+                    <th style="width: 10px;">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -53,11 +54,12 @@
                     <tr>
                       <td><?php echo $value->kode_berkas ?></td>
                       <td><?php echo $value->nama_berkas ?></td>
+                      <td><img src="data:<?= $value->tipe_berkas; ?>;base64,<?= $value->berkas; ?>" width="200" height="100"></td>
                       <td><?php echo $value->keterangan ?></td>
                       <td>
-                        <a href="#" type="button" title="Lihat" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                        <a href="<?php echo base_url('admin/gambar_next/' . $value->kode_berkas); ?>" type="button" title="Detail" class="btn btn-warning"><i class="fa fa-arrow-right"></i></a>
-                        <a href="<?php echo base_url('admin/hapus/' . $value->kode_berkas); ?>" type="button" title="Hapus" class="btn btn-danger"><i class="fa fa-crosshairs"></i></a>
+                        <a href="<?php echo base_url('admin/edit/' . $value->kode_berkas); ?>" type="button" title="Edit" class="btn btn-warning btn-sm btn-block"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url('admin/hapus/' . $value->kode_berkas); ?>" type="button" title="Hapus" class="btn btn-danger btn-sm btn-block"><i class="fa fa-crosshairs"></i></a>
+                        <a href="<?php echo base_url('admin/gambar_next/' . $value->kode_berkas); ?>" type="button" title="Detail" class="btn btn-success btn-sm btn-block"><i class="fa fa-arrow-right"></i></a>
                       </td>
                     </tr>
                   <?php } ?>

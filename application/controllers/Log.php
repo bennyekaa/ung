@@ -8,14 +8,12 @@ class Log extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('admin_model');
 		date_default_timezone_set("Asia/Jakarta");
-		// error_reporting(0);
+		error_reporting(E_ALL);
 	}
 
 	public function index(){
 		if($this->session->userdata('level')=='admin'){
 			redirect ('admin');
-		}else if($this->session->userdata('level')=='user'){
-			redirect ('operator');
 		}else {
 			$this->load->view('v_admin/login');
 		}
@@ -25,13 +23,11 @@ class Log extends CI_Controller {
 			 'pass'=> md5($this->input->post('password'))
 			 ));
 		$datauser = $this->admin_model->get_user($data);
+		// var_dump($datauser);
+		// die();
 		if($this->session->userdata('level')=='admin'){
-			// var_dump($this->session->userdata('level'));
-			// die();
 			redirect ('admin');
-		}else if($this->session->userdata('level')=='user'){
-			redirect ('operator');
-		} else {
+		}else  {
 			$this->session->set_flashdata('gagal','Cek username dan password'); 
 			redirect('log');
 		}

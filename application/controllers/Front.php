@@ -56,4 +56,39 @@ class Front extends CI_Controller
 		// die();
 		// $data['content']['judulhalaman'] = $judul;
 	}
+
+	public function saran()
+	{
+
+		$nama = $this->input->post('nama');
+		$email = $this->input->post('email');
+		$subject = $this->input->post('subject');
+		$pesan = $this->input->post('pesan');
+		$data = array(
+			'nama' 		=> $nama,
+			'email'		=> $email,
+			'subject' 	=> $subject,
+			'pesan' 	=> $pesan
+		);
+		$this->admin_model->input_data($data, 'masukkan');
+		$this->session->set_flashdata('success', 'Berhasil disimpan');
+		redirect(base_url());
+	}
+
+	public function coba()
+	{
+		$nama = $this->input->post('nama');
+		$email = $this->input->post('email');
+		$subject = $this->input->post('subject');
+		$pesan = $this->input->post('pesan');
+		$data = array(
+			'nama' 		=> $nama,
+			'email'		=> $email,
+			'subject' 	=> $subject,
+			'pesan' 	=> $pesan
+		);
+		$this->admin_model->input_data($data, 'masukkan');
+		// $this->session->set_flashdata('success', 'Berhasil disimpan');
+		// redirect(base_url());
+	}
 }

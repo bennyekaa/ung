@@ -31,7 +31,7 @@
                                 <select name="kode_kategori" id="kategori">
                                     <option disabled selected> Pilih </option>
                                     <?php
-                                    foreach ($kategori ?? [] as $key => $value) {
+                                    foreach ($kategori as $key => $value) {
                                     ?>
                                         <option value="<?= $value->kode_kategori ?>"><?= $value->nama_kategori ?></option>
                                     <?php

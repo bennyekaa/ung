@@ -69,7 +69,7 @@ class Admin_model extends CI_Model
 
     function get_user($data)
     {
-        $query = $this->db->get_where('ref_user', $data);
+        $query = $this->db->get_where('user', $data);
         foreach ($query->result() as $ceklogin) {
             $data['id_user']    = $ceklogin->id_user;
             $data['user']       = $ceklogin->user;
